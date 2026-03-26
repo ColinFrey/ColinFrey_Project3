@@ -48,6 +48,5 @@ body {
   top: 0;
   z-index: 999;
   will-change: transform;
-  /* This keeps the pufferfish looking natural against the blue */
   mix-blend-mode: multiply; 
 }
