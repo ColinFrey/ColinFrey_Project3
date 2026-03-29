@@ -10,11 +10,10 @@ body {
     align-items: center;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: #1a2a3a; /* Deep base color */
+    background-color: #0b1521;
     overflow: hidden;
 }
 
-/* Parallax Background Setup */
 .parallax-wrapper {
     position: fixed;
     top: 0;
@@ -29,39 +28,33 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%; /* Wider than screen to allow infinite scrolling */
+    width: 100%;
     height: 100%;
     background-repeat: repeat-x;
     background-size: auto 100%;
+    background-position: 0 0;
 }
 
-.layer-far {
-    background-image: url('../img/far copy.png');
-    animation: moveParallax 120s linear infinite;
-    opacity: 0.6;
+.layer-tint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 20, 50, 0.4); 
+    z-index: 5;
 }
 
-.layer-sand {
-    background-image: url('../img/sand copy.png');
-    animation: moveParallax 80s linear infinite;
+.layer-far { background-image: url('../img/far copy.png'); animation: moveBack 300s linear infinite; opacity: 0.6; }
+.layer-sand { background-image: url('../img/sand copy.png'); animation: moveBack 200s linear infinite; }
+.layer-fore-1 { background-image: url('../img/foreground-1 copy.png'); animation: moveBack 120s linear infinite; }
+.layer-fore-2 { background-image: url('../img/foreground-2 copy.png'); animation: moveBack 80s linear infinite; }
+
+@keyframes moveBack {
+    from { background-position: 0 0; }
+    to { background-position: -3000px 0; }
 }
 
-.layer-fore-1 {
-    background-image: url('../img/foreground-1 copy.png');
-    animation: moveParallax 40s linear infinite;
-}
-
-.layer-fore-2 {
-    background-image: url('../img/foreground-2 copy.png');
-    animation: moveParallax 20s linear infinite;
-}
-
-@keyframes moveParallax {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* UI Elements */
 .container {
     display: flex;
     flex-direction: column;
@@ -78,7 +71,8 @@ body {
     backdrop-filter: blur(10px);
     padding: 10px 25px;
     border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Updated Shadow */
+    box-shadow: 0 25px 50px rgba(10, 30, 60, 0.6);
     align-items: center;
 }
 
@@ -92,8 +86,6 @@ body {
 
 .icon-btn {
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 45px;
     height: 45px;
     padding: 8px;
@@ -131,7 +123,8 @@ body {
     height: 600px;
     background-color: #ffffff;
     border-radius: 50px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    /* Updated Shadow to match Toolbar */
+    box-shadow: 0 25px 50px rgba(10, 30, 60, 0.6);
     cursor: crosshair;
     touch-action: none;
     user-select: none;
