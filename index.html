@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Pufferfish Parallax World</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing App</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-  <div class="parallax-layer layer-far"></div>
-  <div class="parallax-layer layer-sand"></div>
-  <div class="parallax-layer layer-mid"></div>
+    <div class="container">
+        <div class="toolbar">
+            <div class="control-group">
+                <button id="drawBtn" class="icon-btn active" title="Brush">
+                    <img src="img/Brush.png" alt="Brush">
+                </button>
+                <button id="eraserBtn" class="icon-btn" title="Eraser">
+                    <img src="img/Eraser.png" alt="Eraser">
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <label for="colorPicker">Color</label>
+                <input type="color" id="colorPicker" value="#000000">
+            </div>
+            
+            <div class="control-group">
+                <label for="lineWidth">Size</label>
+                <input type="range" id="lineWidth" min="1" max="80" value="5">
+            </div>
+            
+            <button id="clearBtn">Clear All</button>
+        </div>
+        
+        <canvas id="drawingCanvas" class="card" width="900" height="600"></canvas>
+    </div>
 
-  <img src="./img/PufferfishSlim.png" id="character" alt="Pufferfish">
-
-  <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,64 +1,82 @@
-const fish = document.getElementById('character');
-const layers = [
-  { el: document.querySelector('.layer-far'), speed: -0.10 },
-  { el: document.querySelector('.layer-sand'), speed: -0.25 },
-  { el: document.querySelector('.layer-mid'), speed: -0.55 }
-];
+window.addEventListener('load', () => {
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+    const colorPicker = document.getElementById('colorPicker');
+    const lineWidth = document.getElementById('lineWidth');
+    const clearBtn = document.getElementById('clearBtn');
+    const drawBtn = document.getElementById('drawBtn');
+    const eraserBtn = document.getElementById('eraserBtn');
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let fishX = window.innerWidth / 2;
-let fishY = window.innerHeight / 2;
+    let isDrawing = false;
+    let isEraser = false;
 
-const delay = 0.04;
-const buffer = 20;
-const puffDuration = 3000;
+    function getMousePos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
 
-let currentFishWidth = 75;
-window.addEventListener('mousedown', () => {
+        return {
+            x: (clientX - rect.left) * scaleX,
+            y: (clientY - rect.top) * scaleY
+        };
+    }
 
-  fish.src = "./img/PufferfishPuffy.png";
-  currentFishWidth = 150;
-  fish.style.width = currentFishWidth + "px";
+    function startDrawing(e) {
+        isDrawing = true;
+        const pos = getMousePos(e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+        ctx.lineWidth = lineWidth.value;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = isEraser ? '#ffffff' : colorPicker.value;
+    }
 
-  setTimeout(() => {
-    fish.src = "./img/PufferfishSlim.png";
-    currentFishWidth = 75;
-    fish.style.width = currentFishWidth + "px";
-  }, puffDuration);
+    function draw(e) {
+        if (!isDrawing) return;
+        if (e.cancelable) e.preventDefault();
+        const pos = getMousePos(e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+    }
+
+    function stopDrawing() {
+        if (isDrawing) {
+            ctx.closePath();
+            isDrawing = false;
+        }
+    }
+
+    drawBtn.addEventListener('click', () => {
+        isEraser = false;
+        drawBtn.classList.add('active');
+        eraserBtn.classList.remove('active');
+        canvas.style.cursor = 'crosshair';
+    });
+
+    eraserBtn.addEventListener('click', () => {
+        isEraser = true;
+        eraserBtn.classList.add('active');
+        drawBtn.classList.remove('active');
+        canvas.style.cursor = 'cell'; 
+    });
+
+    canvas.addEventListener('mousedown', startDrawing);
+    window.addEventListener('mousemove', draw);
+    window.addEventListener('mouseup', stopDrawing);
+
+    canvas.addEventListener('touchstart', (e) => { 
+        startDrawing(e); 
+        e.preventDefault(); 
+    }, {passive: false});
+    window.addEventListener('touchmove', (e) => { 
+        draw(e); 
+    }, {passive: false});
+    window.addEventListener('touchend', stopDrawing);
+
+    clearBtn.addEventListener('click', () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
 });
-
-window.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animate() {
-  fishX += (mouseX - fishX) * delay;
-  fishY += (mouseY - fishY) * delay;
-
-  const minX = (currentFishWidth / 2) - buffer;
-  const maxX = window.innerWidth - (currentFishWidth / 2) + buffer;
-  const minY = (currentFishWidth / 2) - buffer;
-  const maxY = window.innerHeight - (currentFishWidth / 2) + buffer;
-
-  if (fishX < minX) fishX = minX;
-  if (fishX > maxX) fishX = maxX;
-  if (fishY < minY) fishY = minY;
-  if (fishY > maxY) fishY = maxY;
-
-  
-  const renderX = Math.round(fishX - (currentFishWidth / 2));
-  const renderY = Math.round(fishY - (currentFishWidth / 2));
-  
-  fish.style.transform = `translate3d(${renderX}px, ${renderY}px, 0)`;
-
-  layers.forEach(layer => {
-    const bgX = Math.round(fishX * layer.speed);
-    layer.el.style.transform = `translate3d(${bgX}px, 0, 0)`;
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
