@@ -4,49 +4,35 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden; 
-  background-color: #0077be; /* Deep sea blue fallback */
+  background-color: #0077be;
+  cursor: pointer;
 }
 
 .parallax-layer {
   position: fixed;
-  /* We make the layers 10% larger than the screen so they don't 
-     show white edges when they slide around */
-  top: -5%;
-  left: -5%;
-  width: 110%;
-  height: 110%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 400%; 
+  background-size: auto 100%; 
+  background-repeat: repeat-x;
+  background-position: left center;
   will-change: transform;
   pointer-events: none;
 }
 
-/* Specific Images */
-.layer-far {
-  background-image: url('../img/far copy.png');
-  z-index: 1;
-}
-
-.layer-sand {
-  background-image: url('../img/sand copy.png');
-  z-index: 2;
-}
-
-.layer-mid {
-  background-image: url('../img/foregound-merged copy.png');
-  z-index: 3;
-}
+.layer-far { background-image: url('../img/far copy.png'); z-index: 1; }
+.layer-sand { background-image: url('../img/sand copy.png'); z-index: 2; }
+.layer-mid { background-image: url('../img/foregound-merged copy.png'); z-index: 3; }
 
 #character {
-  position: absolute;
-  width: 150px; 
+  position: fixed;
+  width: 75px; 
   height: auto;
-  display: block;
-  pointer-events: none;
   left: 0;
   top: 0;
   z-index: 999;
   will-change: transform;
-  mix-blend-mode: multiply; 
+  pointer-events: none;
+  transition: width 0.2s ease;
 }
