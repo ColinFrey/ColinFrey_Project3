@@ -5,12 +5,21 @@
 }
 
 body {
-    background-color: #f0f4f8; 
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #f29a7d 0%, #7d8bb2 35%, #5d6d94 70%, #2c3e50 100%);
+    background-size: 400% 400%;
+    animation: oneJohnMove 20s ease infinite;
+    overflow: hidden;
+}
+
+@keyframes oneJohnMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container {
@@ -23,10 +32,11 @@ body {
 .toolbar {
     display: flex;
     gap: 20px;
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
     padding: 10px 25px;
     border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     align-items: center;
 }
 
@@ -35,7 +45,7 @@ body {
     align-items: center;
     gap: 12px;
     font-size: 14px;
-    color: #555;
+    color: #333;
 }
 
 .icon-btn {
@@ -47,7 +57,7 @@ body {
     padding: 8px;
     border-radius: 50%;
     border: 2px solid transparent;
-    background: #f8f9fa;
+    background: #fdfdfd;
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -59,33 +69,27 @@ body {
 }
 
 .icon-btn.active {
-    background: #e7f1ff;
-    border-color: #007bff;
-}
-
-.icon-btn:hover {
-    background: #eee;
+    background: #eef2f3;
+    border-color: #7d8bb2;
 }
 
 #clearBtn {
     padding: 10px 20px;
     border-radius: 25px;
     border: none;
-    background: #ff4d4d;
+    background: #2c3e50;
     color: white;
     cursor: pointer;
     font-weight: bold;
 }
-
-#clearBtn:hover { opacity: 0.8; }
 
 .card {
     display: block;
     width: 900px; 
     height: 600px;
     background-color: #ffffff;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     cursor: crosshair;
     touch-action: none;
     user-select: none;
