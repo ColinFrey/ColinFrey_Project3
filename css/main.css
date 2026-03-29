@@ -10,23 +10,65 @@ body {
     align-items: center;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: linear-gradient(135deg, #f29a7d 0%, #7d8bb2 35%, #5d6d94 70%, #2c3e50 100%);
-    background-size: 400% 400%;
-    animation: oneJohnMove 20s ease infinite;
+    background-color: #1a2a3a; /* Deep base color */
     overflow: hidden;
 }
 
-@keyframes oneJohnMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Parallax Background Setup */
+.parallax-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
 }
 
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* Wider than screen to allow infinite scrolling */
+    height: 100%;
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+}
+
+.layer-far {
+    background-image: url('../img/far copy.png');
+    animation: moveParallax 120s linear infinite;
+    opacity: 0.6;
+}
+
+.layer-sand {
+    background-image: url('../img/sand copy.png');
+    animation: moveParallax 80s linear infinite;
+}
+
+.layer-fore-1 {
+    background-image: url('../img/foreground-1 copy.png');
+    animation: moveParallax 40s linear infinite;
+}
+
+.layer-fore-2 {
+    background-image: url('../img/foreground-2 copy.png');
+    animation: moveParallax 20s linear infinite;
+}
+
+@keyframes moveParallax {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* UI Elements */
 .container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .toolbar {
