@@ -71,7 +71,6 @@ body {
     backdrop-filter: blur(10px);
     padding: 10px 25px;
     border-radius: 50px;
-    /* Updated Shadow */
     box-shadow: 0 25px 50px rgba(10, 30, 60, 0.6);
     align-items: center;
 }
@@ -123,10 +122,28 @@ body {
     height: 600px;
     background-color: #ffffff;
     border-radius: 50px;
-    /* Updated Shadow to match Toolbar */
     box-shadow: 0 25px 50px rgba(10, 30, 60, 0.6);
     cursor: crosshair;
     touch-action: none;
     user-select: none;
     overflow: hidden; 
+}
+
+.particle {
+    position: fixed;
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 100;
+    animation: particleFade 0.8s ease-out forwards;
+}
+
+@keyframes particleFade {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0) translateY(-20px);
+        opacity: 0;
+    }
 }
