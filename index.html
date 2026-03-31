@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underwater Drawing App</title>
+    <title>Sea Sketch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -15,33 +18,40 @@
         <div class="layer-tint"></div>
     </div>
 
-    <div class="container">
-        <div class="toolbar">
-            <div class="control-group">
-                <button id="drawBtn" class="icon-btn active" title="Brush">
-                    <img src="img/Brush.png" alt="Brush">
-                </button>
-                <button id="eraserBtn" class="icon-btn" title="Eraser">
-                    <img src="img/Eraser.png" alt="Eraser">
-                </button>
-                <button id="undoBtn" class="icon-btn" title="Undo">
-                    <img src="img/Undo.png" alt="Undo">
-                </button>
-                <button id="redoBtn" class="icon-btn" title="Redo">
-                    <img src="img/Redo.png" alt="Redo">
-                </button>
+    <header class="main-header">
+        <h1 class="shrikhand-regular">Sea Sketch</h1>
+    </header>
+
+    <div class="main-layout">
+        <div class="canvas-container">
+            <canvas id="drawingCanvas" class="card" width="900" height="600"></canvas>
+            
+            <div class="toolbar">
+                <div class="control-group">
+                    <button id="drawBtn" class="icon-btn active" title="Brush">
+                        <img src="img/Brush.png" alt="Brush">
+                    </button>
+                    <button id="eraserBtn" class="icon-btn" title="Eraser">
+                        <img src="img/Eraser.png" alt="Eraser">
+                    </button>
+                    <button id="undoBtn" class="icon-btn" title="Undo">
+                        <img src="img/Undo.png" alt="Undo">
+                    </button>
+                    <button id="redoBtn" class="icon-btn" title="Redo">
+                        <img src="img/Redo.png" alt="Redo">
+                    </button>
+                </div>
+                <div class="control-group">
+                    <label for="colorPicker">Color</label>
+                    <input type="color" id="colorPicker" value="#000000">
+                </div>
+                <div class="control-group">
+                    <label for="lineWidth">Size</label>
+                    <input type="range" id="lineWidth" min="1" max="80" value="5">
+                </div>
+                <button id="clearBtn">Clear</button>
             </div>
-            <div class="control-group">
-                <label for="colorPicker">Color</label>
-                <input type="color" id="colorPicker" value="#000000">
-            </div>
-            <div class="control-group">
-                <label for="lineWidth">Size</label>
-                <input type="range" id="lineWidth" min="1" max="80" value="5">
-            </div>
-            <button id="clearBtn">Clear All</button>
         </div>
-        <canvas id="drawingCanvas" class="card" width="900" height="600"></canvas>
     </div>
     <script src="js/main.js"></script>
 </body>

@@ -11,16 +11,12 @@ window.addEventListener('load', () => {
 
     let isDrawing = false;
     let isEraser = false;
-
-  
     let historyStack = [];
     let redoStack = [];
 
-   
     saveState();
 
     function saveState() {
-
         if (historyStack.length > 20) historyStack.shift();
         historyStack.push(canvas.toDataURL());
     }
@@ -107,7 +103,6 @@ window.addEventListener('load', () => {
         }
     }
 
-  
     drawBtn.addEventListener('click', () => {
         isEraser = false;
         drawBtn.classList.add('active');

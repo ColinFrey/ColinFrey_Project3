@@ -6,12 +6,17 @@
 
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background-color: #0b1521;
     overflow: hidden;
+}
+
+.shrikhand-regular {
+    font-family: "Shrikhand", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .parallax-wrapper {
@@ -55,38 +60,74 @@ body {
     to { background-position: -3000px 0; }
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
+.main-header {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 10px 0;
     position: relative;
     z-index: 10;
 }
 
-.toolbar {
+.main-header h1 {
+    color: #ffffff;
+    font-size: 4rem;
+    letter-spacing: 2px;
+}
+
+.main-layout {
+    flex: 1;
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    z-index: 10;
+    padding-top: 10px;
+}
+
+.canvas-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbar {
+    position: absolute;
+    left: calc(100% + 40px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
-    padding: 10px 25px;
+    padding: 20px 12px;
     border-radius: 50px;
-    box-shadow: 0 25px 50px rgba(10, 30, 60, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     align-items: center;
 }
 
 .control-group {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
-    font-size: 14px;
+    gap: 8px;
+    font-size: 12px;
     color: #333;
+    font-weight: bold;
+}
+
+.control-group input[type="range"] {
+    writing-mode: bt-lr; 
+    appearance: slider-vertical;
+    width: 8px;
+    height: 100px;
 }
 
 .icon-btn {
     display: flex;
-    width: 45px;
-    height: 45px;
+    width: 42px;
+    height: 42px;
     padding: 8px;
     border-radius: 50%;
     border: 2px solid transparent;
@@ -107,13 +148,14 @@ body {
 }
 
 #clearBtn {
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 8px 12px;
+    border-radius: 20px;
     border: none;
-    background: #2c3e50;
+    background: #c0392b;
     color: white;
     cursor: pointer;
     font-weight: bold;
+    font-size: 11px;
 }
 
 .card {
@@ -121,8 +163,8 @@ body {
     width: 900px; 
     height: 600px;
     background-color: #ffffff;
-    border-radius: 50px;
-    box-shadow: 0 25px 50px rgba(10, 30, 60, 0.6);
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     cursor: crosshair;
     touch-action: none;
     user-select: none;
