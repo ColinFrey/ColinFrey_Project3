@@ -26,7 +26,7 @@
         <div class="canvas-container">
             <canvas id="drawingCanvas" class="card" width="900" height="600"></canvas>
             
-            <div class="toolbar">
+            <div class="toolbar" id="mainToolbar">
                 <div class="control-group">
                     <button id="drawBtn" class="icon-btn active" title="Brush">
                         <img src="img/Brush.png" alt="Brush">
@@ -40,15 +40,33 @@
                     <button id="redoBtn" class="icon-btn" title="Redo">
                         <img src="img/Redo.png" alt="Redo">
                     </button>
+                    <button id="downloadBtn" class="icon-btn" title="Download Artwork">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </button>
                 </div>
+
                 <div class="control-group">
-                    <label for="colorPicker">Color</label>
-                    <input type="color" id="colorPicker" value="#000000">
+                    <label for="colorPicker">Pen</label>
+                    <input type="color" id="colorPicker" class="rect-picker" value="#000000">
                 </div>
+
+                <div class="control-group bg-control">
+                    <label>Background</label>
+                    <div class="bg-toggle-container">
+                        <input type="checkbox" id="bgEnabled" title="Enable Background">
+                        <input type="color" id="bgColorPicker" class="rect-picker" value="#ffffff">
+                    </div>
+                </div>
+
                 <div class="control-group">
                     <label for="lineWidth">Size</label>
                     <input type="range" id="lineWidth" min="1" max="80" value="5">
                 </div>
+
                 <button id="clearBtn">Clear</button>
             </div>
         </div>
