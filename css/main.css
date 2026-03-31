@@ -8,7 +8,6 @@ body {
 
 .shrikhand-regular { font-family: "Shrikhand", serif; font-weight: 400; }
 
-/* Parallax Layers */
 .parallax-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 .layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-repeat: repeat-x; background-size: auto 100%; }
 .layer-far { background-image: url('../img/far copy.png'); animation: moveBack 300s linear infinite; opacity: 0.6; }
@@ -24,7 +23,6 @@ body {
 .main-layout { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding-top: 10px; z-index: 10; }
 .canvas-container { position: relative; display: inline-block; margin-top: -15px; }
 
-/* Toolbar Base */
 .toolbar {
     position: absolute; left: calc(100% + 30px); top: 0; height: 600px;
     display: flex; flex-direction: column; justify-content: space-between;
@@ -37,7 +35,7 @@ body {
 .control-group { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; }
 label { font-size: 14px; color: #111; font-weight: 900; letter-spacing: 0.5px; }
 
-/* History Oval */
+
 .history-oval {
     display: flex; flex-direction: column; width: 44px; height: 80px;
     background: #fff; border: 2px solid #ddd; border-radius: 25px; overflow: hidden;
@@ -50,7 +48,6 @@ label { font-size: 14px; color: #111; font-weight: 900; letter-spacing: 0.5px; }
 .oval-half:hover { background: #f0f8ff; }
 .oval-half img { width: 100%; height: 100%; object-fit: contain; }
 
-/* Size Control Stacked */
 .size-controls-container { display: flex; flex-direction: row; align-items: center; gap: 8px; }
 .step-stack { display: flex; flex-direction: column; gap: 4px; }
 .step-btn-mini {
@@ -65,7 +62,6 @@ input[type="range"] {
     width: 8px; height: 100px; cursor: pointer;
 }
 
-/* UI Elements */
 .icon-btn {
     width: 44px; height: 44px; padding: 10px; border-radius: 50%;
     border: 2px solid transparent; background: #fdfdfd; cursor: pointer;
@@ -85,7 +81,6 @@ input[type="range"] {
     font-size: 22px; font-weight: 900; cursor: pointer;
 }
 
-/* Modal UI */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(11, 21, 33, 0.85); display: none;
