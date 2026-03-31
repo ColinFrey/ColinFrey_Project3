@@ -55,8 +55,7 @@ window.addEventListener('load', () => {
         return {
             x: (clientX - rect.left) * (canvas.width / rect.width),
             y: (clientY - rect.top) * (canvas.height / rect.height),
-            rawX: clientX,
-            rawY: clientY
+            rawX: clientX, rawY: clientY
         };
     }
 
