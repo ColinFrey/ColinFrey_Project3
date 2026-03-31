@@ -11,6 +11,12 @@ window.addEventListener('load', () => {
     const undoBtn = document.getElementById('undoBtn');
     const redoBtn = document.getElementById('redoBtn');
     const downloadBtn = document.getElementById('downloadBtn');
+    const increaseBtn = document.getElementById('increaseSize');
+    const decreaseBtn = document.getElementById('decreaseSize');
+
+    const confirmModal = document.getElementById('confirmModal');
+    const confirmClearBtn = document.getElementById('confirmClear');
+    const cancelClearBtn = document.getElementById('cancelClear');
 
     let isDrawing = false;
     let isEraser = false;
@@ -48,31 +54,26 @@ window.addEventListener('load', () => {
         };
     }
 
+    // Stacked Button Logic
+    increaseBtn.addEventListener('click', () => {
+        lineWidth.value = Math.min(parseInt(lineWidth.value) + 1, 80);
+    });
+    decreaseBtn.addEventListener('click', () => {
+        lineWidth.value = Math.max(parseInt(lineWidth.value) - 1, 1);
+    });
+
     function getMousePos(e) {
         const rect = canvas.getBoundingClientRect();
         const clientX = e.clientX || (e.touches && e.touches[0].clientX);
         const clientY = e.clientY || (e.touches && e.touches[0].clientY);
         return {
             x: (clientX - rect.left) * (canvas.width / rect.width),
-            y: (clientY - rect.top) * (canvas.height / rect.height),
-            rawX: clientX, rawY: clientY
+            y: (clientY - rect.top) * (canvas.height / rect.height)
         };
     }
 
     function updateCanvasBackground() {
         canvas.style.backgroundColor = bgEnabled.checked ? bgColorPicker.value : '#ffffff';
-    }
-
-    function createParticle(x, y) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        const size = Math.random() * 15 + 5;
-        particle.style.width = particle.style.height = `${size}px`;
-        particle.style.left = `${x - size / 2}px`;
-        particle.style.top = `${y - size / 2}px`;
-        particle.style.background = isEraser ? (bgEnabled.checked ? bgColorPicker.value : '#ffffff') : colorPicker.value;
-        document.body.appendChild(particle);
-        setTimeout(() => particle.remove(), 800);
     }
 
     function startDrawing(e) {
@@ -88,7 +89,7 @@ window.addEventListener('load', () => {
             ctx.globalCompositeOperation = 'destination-out';
         } else {
             ctx.globalCompositeOperation = 'source-over';
-            ctx.strokeStyle = isEraser ? bgColorPicker.value : colorPicker.value;
+            ctx.strokeStyle = isEraser ? (bgEnabled.checked ? bgColorPicker.value : '#ffffff') : colorPicker.value;
         }
     }
 
@@ -98,7 +99,6 @@ window.addEventListener('load', () => {
         const pos = getMousePos(e);
         ctx.lineTo(pos.x, pos.y);
         ctx.stroke();
-        createParticle(pos.rawX, pos.rawY);
     }
 
     function stopDrawing() {
@@ -108,6 +108,14 @@ window.addEventListener('load', () => {
             saveState(); 
         }
     }
+
+    clearBtn.addEventListener('click', () => { confirmModal.style.display = 'flex'; });
+    cancelClearBtn.addEventListener('click', () => { confirmModal.style.display = 'none'; });
+    confirmClearBtn.addEventListener('click', () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        saveState();
+        confirmModal.style.display = 'none';
+    });
 
     drawBtn.addEventListener('click', () => {
         isEraser = false;
@@ -141,7 +149,6 @@ window.addEventListener('load', () => {
         link.click();
     });
 
-    clearBtn.addEventListener('click', () => { ctx.clearRect(0, 0, canvas.width, canvas.height); saveState(); });
     canvas.addEventListener('mousedown', startDrawing);
     window.addEventListener('mousemove', draw);
     window.addEventListener('mouseup', stopDrawing);

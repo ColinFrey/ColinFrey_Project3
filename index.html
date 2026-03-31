@@ -44,7 +44,7 @@
                         </button>
                     </div>
 
-                    <button id="downloadBtn" class="icon-btn" title="Download Artwork">
+                    <button id="downloadBtn" class="icon-btn" title="Download">
                         <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                             <polyline points="7 10 12 15 17 10"></polyline>
@@ -67,14 +67,32 @@
                 </div>
 
                 <div class="control-group slider-group">
-                    <label for="lineWidth">SIZE</label>
-                    <input type="range" id="lineWidth" min="1" max="80" value="5">
+                    <label>SIZE</label>
+                    <div class="size-controls-container">
+                        <input type="range" id="lineWidth" min="1" max="80" value="5">
+                        <div class="step-stack">
+                            <button id="increaseSize" class="step-btn-mini">+</button>
+                            <button id="decreaseSize" class="step-btn-mini">−</button>
+                        </div>
+                    </div>
                 </div>
 
-                <button id="clearBtn">CLEAR</button>
+                <button id="clearBtn" class="clear-x-btn" title="Clear Canvas">✕</button>
             </div>
         </div>
     </div>
+
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="shrikhand-regular">Clear Canvas?</h2>
+            <p>Are you sure you want to clear your artwork? This cannot be undone.</p>
+            <div class="modal-buttons">
+                <button id="cancelClear" class="modal-btn secondary">Go Back</button>
+                <button id="confirmClear" class="modal-btn primary">Yes, Clear It</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>
