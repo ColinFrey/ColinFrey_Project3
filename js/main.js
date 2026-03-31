@@ -54,7 +54,7 @@ window.addEventListener('load', () => {
         };
     }
 
-    // Stacked Button Logic
+    // Stacked Button Precision
     increaseBtn.addEventListener('click', () => {
         lineWidth.value = Math.min(parseInt(lineWidth.value) + 1, 80);
     });
